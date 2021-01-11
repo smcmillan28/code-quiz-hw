@@ -3,39 +3,120 @@ var start = document.getElementById("start-quiz");
 var timerEl = document.getElementById("timer");
 var quizEl = document.getElementById("quiz-content");
 
-// Write function that will manipulate DOM and push quiz to the page
-function quizStart() {
-    var timeLeft = 100;
+// Questions and answers in object form
+var myQuestions = [
+    {
+        question: "Arrays in Javascript can be used to store _____.", 
+        answers: {
+            a: "numbers and strings", 
+            b: "other arrays", 
+            c: "booleans", 
+            d: "all of the above"
+        },
+        correctAns: "d"
+    },
+    {
+        question: "Commonly used data types DO NOT include _____.", 
+        answers: {
+            a: "strings", 
+            b: "booleans", 
+            c: "alerts", 
+            d: "numbers"
+        },
+        correctAns: "c"
+    },
+    {
+        question: "String values must be enclosed within _____ when being assigned to variables.",
+        answers: {
+            a: "quotation marks",
+            b: "curly brackets",
+            c: "parentheses",
+            d: "commas"
+        },
+        correctAns: "a"
+    },
+    {
+        question: "The condition in an if/else statement is enclosed within _____.",
+        answers: {
+            a: "curly brackets",
+            b: "parentheses",
+            c: "commas",
+            d: "quotation marks"
+        },
+        correctAns: "b"
+    },
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is _____.",
+        answers: {
+            a: "JavaScript",
+            b: "the terminal/bash",
+            c: "console log", 
+            d: "for loops"
+        },
+        correctAns: "c"
+    }
+];
 
-    // Clear button from the page
-    quizEl.textContent = "";
+// Countdown function
+function timerStart() {
+    var timeLeft = 10;
 
     // Primary timer function
     var timeInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = timeLeft
 
-        // Write quiz questions to the DOM
-
+        // When time runs out, clear page and provide option to return to try quiz again
         if (timeLeft === 0) {
             clearInterval(timeInterval);
-            timerEl.textContent = "0"
-            var endGame = document.getElementById("quiz-content");
-            endGame.textContent = "Time's Up!! Try again.";
-            endGame.setAttribute("style", "font-size: 30px; text-align: center;");
+            timerEl.textContent = "60"
+            quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
+            quizEl.textContent = "Time's Up!! Try again.";
+            var restart = document.createElement("button");
+            restart = start;
+            quizEl.appendChild(restart);
         }
+    }, 1000); 
+}
 
-    }, 1000);
+// Write function that will write questions to the DOM
+function quiz() {
+    quizEl.textContent = "";
+
+    // Creating section in the DOM for quiz and answers to go in
+    var quizQuestion = document.createElement("div");
+    quizQuestion.setAttribute("style", "font-size: 20px; margin: 50px;");
+    quizEl.appendChild(quizQuestion);
+
+    // Creating buttons to hold potential answers
+    var option1 = document.createElement("button");
+    option1.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
+    quizEl.appendChild(option1);  
+    var option2 = document.createElement("button");
+    option2.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
+    quizEl.appendChild(option2);  
+    var option3 = document.createElement("button");
+    option3.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
+    quizEl.appendChild(option3);  
+    var option4 = document.createElement("button");
+    option4.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
+    quizEl.appendChild(option4);  
+
+    // Write questions and answers to the page
+    var i = 0;
+    quizQuestion.textContent = myQuestions[i].question; 
+    option1.textContent = myQuestions[i].answers.a;
+    option2.textContent = myQuestions[i].answers.b;
+    option3.textContent = myQuestions[i].answers.c;
+    option4.textContent = myQuestions[i].answers.d;
+
+    // Increase iterator
+    i++;
+    console.log(i);
+
+    // quizQuestion.addEventListener("click", quiz);
 }
 
 // Initiating quiz and timer with click
-start.addEventListener("click", quizStart);
-
-// Creating questions through series of variables/objects
-var myQuestions = [
-    new Question("Arrays in Javascript can be used to store _____.", ["numbers and strings", "other arrays", "booleans", "all of the above"], "all of the above"),
-    new Question("Commonly used data types DO NOT include _____.", ["strings", "booleans", "alerts", "numbers"], "alerts"),
-    new Question("String values must be enclosed within _____ when being assigned to variables.", ["quotation marks", "curly brackets", "parentheses", "commas"], "quotation marks"),
-    new Question("The condition in an if/else statement is enclosed within _____.", ["curly brackets", "parentheses", "commas", "quotation marks"], "parentheses"),
-    new Question("A very useful tool used during development and debugging for printing content to the debugger is _____.", ["Javascript", "the terminal/bash", "console log", "for loops"], "console log")
-];
+start.addEventListener("click", timerStart);
+start.addEventListener("click", quiz);
