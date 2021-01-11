@@ -115,6 +115,7 @@ function quiz() {
     option2.textContent = myQuestions[i].answers.b;
     option3.textContent = myQuestions[i].answers.c;
     option4.textContent = myQuestions[i].answers.d;
+    console.log(myQuestions[i].correctAns);
 
     // Click events for each option that will progress through the quiz
     option1.addEventListener("click", () => {
@@ -125,10 +126,15 @@ function quiz() {
             option2.textContent = myQuestions[i].answers.b;
             option3.textContent = myQuestions[i].answers.c;
             option4.textContent = myQuestions[i].answers.d;
+            console.log(myQuestions[i].correctAns);
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
             var userScore = timeLeft
-            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ". Please enter your score along with your initials below.";
+            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ".";
+            var scoreIns = document.createElement("p");
+            quizEl.appendChild(scoreIns);
+            scoreIns.setAttribute("style", "font-size: 16px;")
+            scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
             timerEl.textContent = userScore;
             clearInterval(timeInterval);
         }
@@ -145,7 +151,11 @@ function quiz() {
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
             var userScore = timeLeft
-            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ". Please enter your score along with your initials below.";
+            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ".";
+            var scoreIns = document.createElement("p");
+            quizEl.appendChild(scoreIns);
+            scoreIns.setAttribute("style", "font-size: 16px;")
+            scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
             timerEl.textContent = userScore;
             clearInterval(timeInterval);
         }    
@@ -162,7 +172,11 @@ function quiz() {
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
             var userScore = timeLeft
-            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ". Please enter your score along with your initials below.";
+            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ".";
+            var scoreIns = document.createElement("p");
+            quizEl.appendChild(scoreIns);
+            scoreIns.setAttribute("style", "font-size: 16px;")
+            scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
             timerEl.textContent = userScore;
             clearInterval(timeInterval);
         }
@@ -179,7 +193,11 @@ function quiz() {
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
             var userScore = timeLeft
-            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ". Please enter your score along with your initials below.";
+            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ".";
+            var scoreIns = document.createElement("p");
+            quizEl.appendChild(scoreIns);
+            scoreIns.setAttribute("style", "font-size: 16px;")
+            scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
             timerEl.textContent = userScore;
             clearInterval(timeInterval);
         }
