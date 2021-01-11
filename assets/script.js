@@ -57,9 +57,9 @@ var myQuestions = [
     }
 ];
 
-// Countdown function
-function timerStart() {
-    var timeLeft = 10;
+// Quiz function
+function quiz() {
+    var timeLeft = 60;
 
     // Primary timer function
     var timeInterval = setInterval(function () {
@@ -67,20 +67,19 @@ function timerStart() {
         timerEl.textContent = timeLeft
 
         // When time runs out, clear page and provide option to return to try quiz again
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
             clearInterval(timeInterval);
             timerEl.textContent = "60"
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
             quizEl.textContent = "Time's Up!! Try again.";
             var restart = document.createElement("button");
             restart = start;
+            restart.textContent = "Restart Quiz";
             quizEl.appendChild(restart);
         }
     }, 1000); 
-}
 
-// Write function that will write questions to the DOM
-function quiz() {
+    // Creating portion of function that will write quiz to DOM
     quizEl.textContent = "";
 
     // Creating section in the DOM for quiz and answers to go in
@@ -102,21 +101,99 @@ function quiz() {
     option4.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
     quizEl.appendChild(option4);  
 
+    // Creating one more element to display correct/incorrect answer
+    var ansDisplay = document.createElement("p");
+    ansDisplay.setAttribute("style", "font-size: 18px; font-style: italic; margin-top: 20px;");
+    quizEl.append(ansDisplay);
+
     // Write questions and answers to the page
-    var i = 0;
-    quizQuestion.textContent = myQuestions[i].question; 
-    option1.textContent = myQuestions[i].answers.a;
-    option2.textContent = myQuestions[i].answers.b;
-    option3.textContent = myQuestions[i].answers.c;
-    option4.textContent = myQuestions[i].answers.d;
+    quizQuestion.textContent = myQuestions[0].question; 
+    option1.textContent = myQuestions[0].answers.a;
+    option2.textContent = myQuestions[0].answers.b;
+    option3.textContent = myQuestions[0].answers.c;
+    option4.textContent = myQuestions[0].answers.d;
 
-    // Increase iterator
-    i++;
-    console.log(i);
+    // // Adding click events for each question
+    // option1.addEventListener("click", () => { 
+    //     quizQuestion.textContent = myQuestions[1].question; 
+    //     option1.textContent = myQuestions[1].answers.a;
+    //     option2.textContent = myQuestions[1].answers.b;
+    //     option3.textContent = myQuestions[1].answers.c;
+    //     option4.textContent = myQuestions[1].answers.d;
+    //     ansDisplay.textContent = "Oops! Wrong Answer!";
+    //     timeLeft -= 5;
+    // });
 
-    // quizQuestion.addEventListener("click", quiz);
+    // option2.addEventListener("click", () => { 
+    //     quizQuestion.textContent = myQuestions[1].question; 
+    //     option1.textContent = myQuestions[1].answers.a;
+    //     option2.textContent = myQuestions[1].answers.b;
+    //     option3.textContent = myQuestions[1].answers.c;
+    //     option4.textContent = myQuestions[1].answers.d;
+    //     ansDisplay.textContent = "Oops! Wrong Answer!";
+    //     timeLeft -= 5;
+    // });
+
+    // option3.addEventListener("click", () => { 
+    //     quizQuestion.textContent = myQuestions[1].question; 
+    //     option1.textContent = myQuestions[1].answers.a;
+    //     option2.textContent = myQuestions[1].answers.b;
+    //     option3.textContent = myQuestions[1].answers.c;
+    //     option4.textContent = myQuestions[1].answers.d;
+    //     ansDisplay.textContent = "Oops! Wrong Answer!";
+    //     timeLeft -= 5;
+    // });
+
+    // option4.addEventListener("click", () => { 
+    //     quizQuestion.textContent = myQuestions[1].question; 
+    //     option1.textContent = myQuestions[1].answers.a;
+    //     option2.textContent = myQuestions[1].answers.b;
+    //     option3.textContent = myQuestions[1].answers.c;
+    //     option4.textContent = myQuestions[1].answers.d;
+    //     ansDisplay.textContent = "Very nice!";
+    //     timeLeft += 5;
+    // });
+
+    // option1.addEventListener("click", () => { 
+    //     quizQuestion.textContent = myQuestions[2].question; 
+    //     option1.textContent = myQuestions[2].answers.a;
+    //     option2.textContent = myQuestions[2].answers.b;
+    //     option3.textContent = myQuestions[2].answers.c;
+    //     option4.textContent = myQuestions[2].answers.d;
+    //     ansDisplay.textContent = "Oops! Wrong Answer!";
+    //     timeLeft -= 5;
+    // });
+
+    // option2.addEventListener("click", () => { 
+    //     quizQuestion.textContent = myQuestions[2].question; 
+    //     option1.textContent = myQuestions[2].answers.a;
+    //     option2.textContent = myQuestions[2].answers.b;
+    //     option3.textContent = myQuestions[2].answers.c;
+    //     option4.textContent = myQuestions[2].answers.d;
+    //     ansDisplay.textContent = "Oops! Wrong Answer!";
+    //     timeLeft -= 5;
+    // });
+
+    // option3.addEventListener("click", () => { 
+    //     quizQuestion.textContent = myQuestions[2].question; 
+    //     option1.textContent = myQuestions[2].answers.a;
+    //     option2.textContent = myQuestions[2].answers.b;
+    //     option3.textContent = myQuestions[2].answers.c;
+    //     option4.textContent = myQuestions[2].answers.d;
+    //     ansDisplay.textContent = "Very nice!";
+    //     timeLeft += 5;
+    // });
+
+    // option4.addEventListener("click", () => { 
+    //     quizQuestion.textContent = myQuestions[2].question; 
+    //     option1.textContent = myQuestions[2].answers.a;
+    //     option2.textContent = myQuestions[2].answers.b;
+    //     option3.textContent = myQuestions[2].answers.c;
+    //     option4.textContent = myQuestions[2].answers.d;
+    //     ansDisplay.textContent = "Oops! Wrong Answer!";
+    //     timeLeft -= 5;
+    // });
 }
 
 // Initiating quiz and timer with click
-start.addEventListener("click", timerStart);
 start.addEventListener("click", quiz);
