@@ -119,38 +119,70 @@ function quiz() {
     // Click events for each option that will progress through the quiz
     option1.addEventListener("click", () => {
         i++;
-        quizQuestion.textContent = myQuestions[i].question; 
-        option1.textContent = myQuestions[i].answers.a;
-        option2.textContent = myQuestions[i].answers.b;
-        option3.textContent = myQuestions[i].answers.c;
-        option4.textContent = myQuestions[i].answers.d;
+        if (i < 5) {
+            quizQuestion.textContent = myQuestions[i].question; 
+            option1.textContent = myQuestions[i].answers.a;
+            option2.textContent = myQuestions[i].answers.b;
+            option3.textContent = myQuestions[i].answers.c;
+            option4.textContent = myQuestions[i].answers.d;
+        } else {
+            quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
+            var userScore = timeLeft
+            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ". Please enter your score along with your initials below.";
+            timerEl.textContent = userScore;
+            clearInterval(timeInterval);
+        }
     });
 
     option2.addEventListener("click", () => {
         i++;
-        quizQuestion.textContent = myQuestions[i].question; 
-        option1.textContent = myQuestions[i].answers.a;
-        option2.textContent = myQuestions[i].answers.b;
-        option3.textContent = myQuestions[i].answers.c;
-        option4.textContent = myQuestions[i].answers.d;
+        if (i < 5) {
+            quizQuestion.textContent = myQuestions[i].question; 
+            option1.textContent = myQuestions[i].answers.a;
+            option2.textContent = myQuestions[i].answers.b;
+            option3.textContent = myQuestions[i].answers.c;
+            option4.textContent = myQuestions[i].answers.d;
+        } else {
+            quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
+            var userScore = timeLeft
+            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ". Please enter your score along with your initials below.";
+            timerEl.textContent = userScore;
+            clearInterval(timeInterval);
+        }    
     });
 
     option3.addEventListener("click", () => {
         i++;
-        quizQuestion.textContent = myQuestions[i].question; 
-        option1.textContent = myQuestions[i].answers.a;
-        option2.textContent = myQuestions[i].answers.b;
-        option3.textContent = myQuestions[i].answers.c;
-        option4.textContent = myQuestions[i].answers.d;
+        if (i < 5) {
+            quizQuestion.textContent = myQuestions[i].question; 
+            option1.textContent = myQuestions[i].answers.a;
+            option2.textContent = myQuestions[i].answers.b;
+            option3.textContent = myQuestions[i].answers.c;
+            option4.textContent = myQuestions[i].answers.d;
+        } else {
+            quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
+            var userScore = timeLeft
+            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ". Please enter your score along with your initials below.";
+            timerEl.textContent = userScore;
+            clearInterval(timeInterval);
+        }
     });
 
     option4.addEventListener("click", () => {
         i++;
-        quizQuestion.textContent = myQuestions[i].question; 
-        option1.textContent = myQuestions[i].answers.a;
-        option2.textContent = myQuestions[i].answers.b;
-        option3.textContent = myQuestions[i].answers.c;
-        option4.textContent = myQuestions[i].answers.d;
+        if (i < 5) {
+            quizQuestion.textContent = myQuestions[i].question; 
+            option1.textContent = myQuestions[i].answers.a;
+            option2.textContent = myQuestions[i].answers.b;
+            option3.textContent = myQuestions[i].answers.c;
+            option4.textContent = myQuestions[i].answers.d;
+        } else {
+            quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
+            var userScore = timeLeft
+            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ". Please enter your score along with your initials below.";
+            timerEl.textContent = userScore;
+            clearInterval(timeInterval);
+        }
     });
 }
 
