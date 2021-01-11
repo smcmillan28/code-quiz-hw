@@ -106,93 +106,52 @@ function quiz() {
     ansDisplay.setAttribute("style", "font-size: 18px; font-style: italic; margin-top: 20px;");
     quizEl.append(ansDisplay);
 
+    // Setting variable for question iterations
+    var i = 0
+
     // Write questions and answers to the page
-    quizQuestion.textContent = myQuestions[0].question; 
-    option1.textContent = myQuestions[0].answers.a;
-    option2.textContent = myQuestions[0].answers.b;
-    option3.textContent = myQuestions[0].answers.c;
-    option4.textContent = myQuestions[0].answers.d;
+    quizQuestion.textContent = myQuestions[i].question; 
+    option1.textContent = myQuestions[i].answers.a;
+    option2.textContent = myQuestions[i].answers.b;
+    option3.textContent = myQuestions[i].answers.c;
+    option4.textContent = myQuestions[i].answers.d;
 
-    // // Adding click events for each question
-    // option1.addEventListener("click", () => { 
-    //     quizQuestion.textContent = myQuestions[1].question; 
-    //     option1.textContent = myQuestions[1].answers.a;
-    //     option2.textContent = myQuestions[1].answers.b;
-    //     option3.textContent = myQuestions[1].answers.c;
-    //     option4.textContent = myQuestions[1].answers.d;
-    //     ansDisplay.textContent = "Oops! Wrong Answer!";
-    //     timeLeft -= 5;
-    // });
+    // Click events for each option that will progress through the quiz
+    option1.addEventListener("click", () => {
+        i++;
+        quizQuestion.textContent = myQuestions[i].question; 
+        option1.textContent = myQuestions[i].answers.a;
+        option2.textContent = myQuestions[i].answers.b;
+        option3.textContent = myQuestions[i].answers.c;
+        option4.textContent = myQuestions[i].answers.d;
+    });
 
-    // option2.addEventListener("click", () => { 
-    //     quizQuestion.textContent = myQuestions[1].question; 
-    //     option1.textContent = myQuestions[1].answers.a;
-    //     option2.textContent = myQuestions[1].answers.b;
-    //     option3.textContent = myQuestions[1].answers.c;
-    //     option4.textContent = myQuestions[1].answers.d;
-    //     ansDisplay.textContent = "Oops! Wrong Answer!";
-    //     timeLeft -= 5;
-    // });
+    option2.addEventListener("click", () => {
+        i++;
+        quizQuestion.textContent = myQuestions[i].question; 
+        option1.textContent = myQuestions[i].answers.a;
+        option2.textContent = myQuestions[i].answers.b;
+        option3.textContent = myQuestions[i].answers.c;
+        option4.textContent = myQuestions[i].answers.d;
+    });
 
-    // option3.addEventListener("click", () => { 
-    //     quizQuestion.textContent = myQuestions[1].question; 
-    //     option1.textContent = myQuestions[1].answers.a;
-    //     option2.textContent = myQuestions[1].answers.b;
-    //     option3.textContent = myQuestions[1].answers.c;
-    //     option4.textContent = myQuestions[1].answers.d;
-    //     ansDisplay.textContent = "Oops! Wrong Answer!";
-    //     timeLeft -= 5;
-    // });
+    option3.addEventListener("click", () => {
+        i++;
+        quizQuestion.textContent = myQuestions[i].question; 
+        option1.textContent = myQuestions[i].answers.a;
+        option2.textContent = myQuestions[i].answers.b;
+        option3.textContent = myQuestions[i].answers.c;
+        option4.textContent = myQuestions[i].answers.d;
+    });
 
-    // option4.addEventListener("click", () => { 
-    //     quizQuestion.textContent = myQuestions[1].question; 
-    //     option1.textContent = myQuestions[1].answers.a;
-    //     option2.textContent = myQuestions[1].answers.b;
-    //     option3.textContent = myQuestions[1].answers.c;
-    //     option4.textContent = myQuestions[1].answers.d;
-    //     ansDisplay.textContent = "Very nice!";
-    //     timeLeft += 5;
-    // });
-
-    // option1.addEventListener("click", () => { 
-    //     quizQuestion.textContent = myQuestions[2].question; 
-    //     option1.textContent = myQuestions[2].answers.a;
-    //     option2.textContent = myQuestions[2].answers.b;
-    //     option3.textContent = myQuestions[2].answers.c;
-    //     option4.textContent = myQuestions[2].answers.d;
-    //     ansDisplay.textContent = "Oops! Wrong Answer!";
-    //     timeLeft -= 5;
-    // });
-
-    // option2.addEventListener("click", () => { 
-    //     quizQuestion.textContent = myQuestions[2].question; 
-    //     option1.textContent = myQuestions[2].answers.a;
-    //     option2.textContent = myQuestions[2].answers.b;
-    //     option3.textContent = myQuestions[2].answers.c;
-    //     option4.textContent = myQuestions[2].answers.d;
-    //     ansDisplay.textContent = "Oops! Wrong Answer!";
-    //     timeLeft -= 5;
-    // });
-
-    // option3.addEventListener("click", () => { 
-    //     quizQuestion.textContent = myQuestions[2].question; 
-    //     option1.textContent = myQuestions[2].answers.a;
-    //     option2.textContent = myQuestions[2].answers.b;
-    //     option3.textContent = myQuestions[2].answers.c;
-    //     option4.textContent = myQuestions[2].answers.d;
-    //     ansDisplay.textContent = "Very nice!";
-    //     timeLeft += 5;
-    // });
-
-    // option4.addEventListener("click", () => { 
-    //     quizQuestion.textContent = myQuestions[2].question; 
-    //     option1.textContent = myQuestions[2].answers.a;
-    //     option2.textContent = myQuestions[2].answers.b;
-    //     option3.textContent = myQuestions[2].answers.c;
-    //     option4.textContent = myQuestions[2].answers.d;
-    //     ansDisplay.textContent = "Oops! Wrong Answer!";
-    //     timeLeft -= 5;
-    // });
+    option4.addEventListener("click", () => {
+        i++;
+        quizQuestion.textContent = myQuestions[i].question; 
+        option1.textContent = myQuestions[i].answers.a;
+        option2.textContent = myQuestions[i].answers.b;
+        option3.textContent = myQuestions[i].answers.c;
+        option4.textContent = myQuestions[i].answers.d;
+    });
 }
 
 // Initiating quiz and timer with click
