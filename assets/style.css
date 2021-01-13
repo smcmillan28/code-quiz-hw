@@ -16,3 +16,16 @@
 main {
     margin-top: 40px;
 }
+
+#highscore-header {
+    text-align: center;
+}
+
+#instructions {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+h3 {
+    text-align: center;
+}

@@ -13,7 +13,7 @@ var myQuestions = [
             c: "booleans", 
             d: "all of the above"
         },
-        correctAns: "d"
+        correctAns: "all of the above"
     },
     {
         question: "Commonly used data types DO NOT include _____.", 
@@ -23,7 +23,7 @@ var myQuestions = [
             c: "alerts", 
             d: "numbers"
         },
-        correctAns: "c"
+        correctAns: "alerts"
     },
     {
         question: "String values must be enclosed within _____ when being assigned to variables.",
@@ -33,7 +33,7 @@ var myQuestions = [
             c: "parentheses",
             d: "commas"
         },
-        correctAns: "a"
+        correctAns: "quotation marks"
     },
     {
         question: "The condition in an if/else statement is enclosed within _____.",
@@ -43,7 +43,7 @@ var myQuestions = [
             c: "commas",
             d: "quotation marks"
         },
-        correctAns: "b"
+        correctAns: "parentheses"
     },
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is _____.",
@@ -53,12 +53,15 @@ var myQuestions = [
             c: "console log", 
             d: "for loops"
         },
-        correctAns: "c"
+        correctAns: "console log"
     }
 ];
 
 // Quiz function
 function quiz() {
+
+    // Clear instructions and set timer to 60
+    document.getElementById("instructions").textContent = "";
     var timeLeft = 60;
 
     // Primary timer function
@@ -109,6 +112,9 @@ function quiz() {
     // Setting variable for question iterations
     var i = 0
 
+    // Setting variable for # questions answered correctly
+    var numRight = 0
+
     // Write questions and answers to the page
     quizQuestion.textContent = myQuestions[i].question; 
     option1.textContent = myQuestions[i].answers.a;
@@ -118,7 +124,21 @@ function quiz() {
     console.log(myQuestions[i].correctAns);
 
     // Click events for each option that will progress through the quiz
-    option1.addEventListener("click", () => {
+    option1.addEventListener("click", function(event) {
+
+        // Setting variable and conditional to tell if click value is correct answer
+        var userPick = myQuestions[i].answers.a.valueOf();
+        console.log(userPick);
+
+        // Subtracting 5 seconds from timer if wrong
+        if (userPick !== myQuestions[i].correctAns) {
+            timeLeft -= 5;
+
+        // Adding 1 to numRight if they answer correctly
+        } else {
+            numRight++;
+            console.log(numRight);
+        }
         i++;
         if (i < 5) {
             quizQuestion.textContent = myQuestions[i].question; 
@@ -129,18 +149,26 @@ function quiz() {
             console.log(myQuestions[i].correctAns);
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
-            var userScore = timeLeft
-            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ".";
+            var userScore = Math.ceil(timeLeft * (numRight/5));
+            quizEl.textContent = "You're done, congratulations!  You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
             scoreIns.setAttribute("style", "font-size: 16px;")
             scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
-            timerEl.textContent = userScore;
+            timerEl.textContent = timeLeft;
             clearInterval(timeInterval);
         }
     });
 
-    option2.addEventListener("click", () => {
+    option2.addEventListener("click", function(event) {
+        var userPick = myQuestions[i].answers.b.valueOf();
+        console.log(userPick);
+        if (userPick !== myQuestions[i].correctAns) {
+            timeLeft -= 5;
+        } else {
+            numRight++;
+            console.log(numRight);
+        }
         i++;
         if (i < 5) {
             quizQuestion.textContent = myQuestions[i].question; 
@@ -148,20 +176,29 @@ function quiz() {
             option2.textContent = myQuestions[i].answers.b;
             option3.textContent = myQuestions[i].answers.c;
             option4.textContent = myQuestions[i].answers.d;
+            console.log(myQuestions[i].correctAns);
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
-            var userScore = timeLeft
-            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ".";
+            var userScore = Math.ceil(timeLeft * (numRight/5));
+            quizEl.textContent = "You're done, congratulations!  You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
             scoreIns.setAttribute("style", "font-size: 16px;")
             scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
-            timerEl.textContent = userScore;
+            timerEl.textContent = timeLeft;
             clearInterval(timeInterval);
         }    
     });
 
-    option3.addEventListener("click", () => {
+    option3.addEventListener("click", function(event) {
+        var userPick = myQuestions[i].answers.c.valueOf();
+        console.log(userPick);
+        if (userPick !== myQuestions[i].correctAns) {
+            timeLeft -= 5;
+        } else {
+            numRight++;
+            console.log(numRight);
+        }
         i++;
         if (i < 5) {
             quizQuestion.textContent = myQuestions[i].question; 
@@ -169,20 +206,29 @@ function quiz() {
             option2.textContent = myQuestions[i].answers.b;
             option3.textContent = myQuestions[i].answers.c;
             option4.textContent = myQuestions[i].answers.d;
+            console.log(myQuestions[i].correctAns);
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
-            var userScore = timeLeft
-            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ".";
+            var userScore = Math.ceil(timeLeft * (numRight/5));
+            quizEl.textContent = "You're done, congratulations!  You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
             scoreIns.setAttribute("style", "font-size: 16px;")
             scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
-            timerEl.textContent = userScore;
+            timerEl.textContent = timeLeft;
             clearInterval(timeInterval);
         }
     });
 
-    option4.addEventListener("click", () => {
+    option4.addEventListener("click", function(event) {
+        var userPick = myQuestions[i].answers.d.valueOf();
+        console.log(userPick);
+        if (userPick !== myQuestions[i].correctAns) {
+            timeLeft -= 5;
+        } else {
+            numRight++;
+            console.log(numRight);
+        }
         i++;
         if (i < 5) {
             quizQuestion.textContent = myQuestions[i].question; 
@@ -190,15 +236,16 @@ function quiz() {
             option2.textContent = myQuestions[i].answers.b;
             option3.textContent = myQuestions[i].answers.c;
             option4.textContent = myQuestions[i].answers.d;
+            console.log(myQuestions[i].correctAns);
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
-            var userScore = timeLeft
-            quizEl.textContent = "You're done, congratulations!  Your score is " + userScore + ".";
+            var userScore = Math.ceil(timeLeft * (numRight/5));
+            quizEl.textContent = "You're done, congratulations!  You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
             scoreIns.setAttribute("style", "font-size: 16px;")
             scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
-            timerEl.textContent = userScore;
+            timerEl.textContent = timeLeft;
             clearInterval(timeInterval);
         }
     });
