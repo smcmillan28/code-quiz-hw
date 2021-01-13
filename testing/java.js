@@ -79,4 +79,14 @@ function runQuiz(myQuestions, quizEl) {
     quizEl.innerHTML = output.join("");
 }
 
+// var scoreForm = document.createElement("form");
+// var scoreDiv = document.createElement("div");
+// scoreDiv.append("<input type='text' name='userScore' id='score-sub' placeholder='Enter Your Score' />");
+// scoreForm.appendChild(scoreDiv);
+// quizEl.appendChild(scoreForm);
+
 runQuiz(myQuestions, quizEl);
+
+var input = document.createElement("input");
+input.type = "text";
+quizEl.appendChild(input);

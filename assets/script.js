@@ -104,10 +104,20 @@ function quiz() {
     option4.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
     quizEl.appendChild(option4);  
 
-    // Creating one more element to display correct/incorrect answer
-    var ansDisplay = document.createElement("p");
-    ansDisplay.setAttribute("style", "font-size: 18px; font-style: italic; margin-top: 20px;");
-    quizEl.append(ansDisplay);
+    // Creating retry button for quiz once complete
+    var retry = document.createElement("button");
+    retry = start;
+    retry.textContent = "Retry Quiz";
+
+    // Creating button and form to use once quiz is over to submit score to local storage
+    var scoreSubmit = document.createElement("button");
+    scoreSubmit.textContent = "Submit Score";
+    scoreSubmit.setAttribute("style", "margin: 10px; margin-left: auto; margin-right: auto; width: 100%; height: 60px; font-size: 20px; color: #fff; background-color: #0d6efd; border: 1px solid transparent; border-radius: .25rem;");
+
+    // Creating form for user to write score
+    var scoreInput = document.createElement("input");
+    scoreInput.type = "text";
+    scoreInput.setAttribute("style", "width: 100%; margin-bottom: 20px; margin-top: 40px;");
 
     // Setting variable for question iterations
     var i = 0
@@ -150,13 +160,16 @@ function quiz() {
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
             var userScore = Math.ceil(timeLeft * (numRight/5));
-            quizEl.textContent = "You're done, congratulations!  You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
+            quizEl.textContent = "You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
             scoreIns.setAttribute("style", "font-size: 16px;")
-            scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
+            scoreIns.textContent = "Please enter your score followed by your initials using this format: 48 JD.";
             timerEl.textContent = timeLeft;
             clearInterval(timeInterval);
+            quizEl.appendChild(scoreInput);
+            quizEl.appendChild(scoreSubmit);
+            quizEl.appendChild(retry);
         }
     });
 
@@ -180,13 +193,16 @@ function quiz() {
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
             var userScore = Math.ceil(timeLeft * (numRight/5));
-            quizEl.textContent = "You're done, congratulations!  You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
+            quizEl.textContent = "You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
             scoreIns.setAttribute("style", "font-size: 16px;")
-            scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
+            scoreIns.textContent = "Please enter your score followed by your initials using this format: 48 JD.";
             timerEl.textContent = timeLeft;
             clearInterval(timeInterval);
+            quizEl.appendChild(scoreInput);
+            quizEl.appendChild(scoreSubmit);
+            quizEl.appendChild(retry);
         }    
     });
 
@@ -210,13 +226,16 @@ function quiz() {
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
             var userScore = Math.ceil(timeLeft * (numRight/5));
-            quizEl.textContent = "You're done, congratulations!  You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
+            quizEl.textContent = "You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
             scoreIns.setAttribute("style", "font-size: 16px;")
-            scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
+            scoreIns.textContent = "Please enter your score followed by your initials using this format: 48 JD.";
             timerEl.textContent = timeLeft;
             clearInterval(timeInterval);
+            quizEl.appendChild(scoreInput);
+            quizEl.appendChild(scoreSubmit);
+            quizEl.appendChild(retry);
         }
     });
 
@@ -240,13 +259,16 @@ function quiz() {
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
             var userScore = Math.ceil(timeLeft * (numRight/5));
-            quizEl.textContent = "You're done, congratulations!  You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
+            quizEl.textContent = "You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
             scoreIns.setAttribute("style", "font-size: 16px;")
-            scoreIns.textContent = "Please enter your score followed by your initials using this format - 48 JD.";
+            scoreIns.textContent = "Please enter your score followed by your initials using this format: 48 JD.";
             timerEl.textContent = timeLeft;
             clearInterval(timeInterval);
+            quizEl.appendChild(scoreInput);
+            quizEl.appendChild(scoreSubmit);
+            quizEl.appendChild(retry);
         }
     });
 }
