@@ -112,12 +112,19 @@ function quiz() {
     // Creating button and form to use once quiz is over to submit score to local storage
     var scoreSubmit = document.createElement("button");
     scoreSubmit.textContent = "Submit Score";
-    scoreSubmit.setAttribute("style", "margin: 10px; margin-left: auto; margin-right: auto; width: 100%; height: 60px; font-size: 20px; color: #fff; background-color: #0d6efd; border: 1px solid transparent; border-radius: .25rem;");
+    scoreSubmit.setAttribute("style", "margin: 10px; margin-left: auto; margin-right: auto; width: 100%; height: 60px; font-size: 20px; color: black; background-color: rgb(185, 201, 247); border: 1px solid black; border-radius: .25rem;");
 
     // Creating form for user to write score
     var scoreInput = document.createElement("input");
     scoreInput.type = "text";
+    scoreInput.setAttribute("id", "score-input");
     scoreInput.setAttribute("style", "width: 100%; margin-bottom: 20px; margin-top: 40px;");
+
+    scoreSubmit.addEventListener("click", function(e) {
+        e.preventDefault();
+        var highScore = document.querySelector("#score-input").value;
+        localStorage.setItem("score", highScore);
+    });
 
     // Setting variable for question iterations
     var i = 0
@@ -134,7 +141,7 @@ function quiz() {
     console.log(myQuestions[i].correctAns);
 
     // Click events for each option that will progress through the quiz
-    option1.addEventListener("click", function(event) {
+    option1.addEventListener("click", function() {
 
         // Setting variable and conditional to tell if click value is correct answer
         var userPick = myQuestions[i].answers.a.valueOf();
@@ -173,7 +180,7 @@ function quiz() {
         }
     });
 
-    option2.addEventListener("click", function(event) {
+    option2.addEventListener("click", function() {
         var userPick = myQuestions[i].answers.b.valueOf();
         console.log(userPick);
         if (userPick !== myQuestions[i].correctAns) {
@@ -206,7 +213,7 @@ function quiz() {
         }    
     });
 
-    option3.addEventListener("click", function(event) {
+    option3.addEventListener("click", function() {
         var userPick = myQuestions[i].answers.c.valueOf();
         console.log(userPick);
         if (userPick !== myQuestions[i].correctAns) {
@@ -239,7 +246,7 @@ function quiz() {
         }
     });
 
-    option4.addEventListener("click", function(event) {
+    option4.addEventListener("click", function() {
         var userPick = myQuestions[i].answers.d.valueOf();
         console.log(userPick);
         if (userPick !== myQuestions[i].correctAns) {
