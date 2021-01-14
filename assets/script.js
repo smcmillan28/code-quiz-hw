@@ -175,17 +175,7 @@ function quiz() {
             quizEl.appendChild(scoreInput);
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
-            // The following function renders scores in a highscore list as <p> elements
-            function renderScores() {
-                scorePage.innerHTML = "";
-                // Render a new p for each new score
-                for (var i = 0; i < scores.length; i++) {
-                    var quizScore = scores[i];
-                    var li = document.createElement("li");
-                    li.textContent = quizScore;
-                    scorePage.appendChild(li);
-                }
-            }
+            // The following code stores the scores in local storage
             function init() {
                 var storedScores = JSON.parse(localStorage.getItem("scores"));
                 if (storedScores !== null) {
@@ -244,15 +234,6 @@ function quiz() {
             quizEl.appendChild(scoreInput);
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
-            function renderScores() {
-                scorePage.innerHTML = "";
-                for (var i = 0; i < scores.length; i++) {
-                    var quizScore = scores[i];
-                    var li = document.createElement("li");
-                    li.textContent = quizScore;
-                    scorePage.appendChild(li);
-                }
-            }
             function init() {
                 var storedScores = JSON.parse(localStorage.getItem("scores"));
                 if (storedScores !== null) {
@@ -308,21 +289,11 @@ function quiz() {
             quizEl.appendChild(scoreInput);
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
-            function renderScores() {
-                scorePage.innerHTML = "";
-                for (var i = 0; i < scores.length; i++) {
-                    var quizScore = scores[i];
-                    var li = document.createElement("li");
-                    li.textContent = quizScore;
-                    scorePage.appendChild(li);
-                }
-            }
             function init() {
                 var storedScores = JSON.parse(localStorage.getItem("scores"));
                 if (storedScores !== null) {
                     scores = storedScores;
                 }
-                renderScores();
             }
             function storeScores() {
                 localStorage.setItem("scores", JSON.stringify(scores));
@@ -372,15 +343,6 @@ function quiz() {
             quizEl.appendChild(scoreInput);
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
-            function renderScores() {
-                scorePage.innerHTML = "";
-                for (var i = 0; i < scores.length; i++) {
-                    var quizScore = scores[i];
-                    var li = document.createElement("li");
-                    li.textContent = quizScore;
-                    scorePage.appendChild(li);
-                }
-            }
             function init() {
                 var storedScores = JSON.parse(localStorage.getItem("scores"));
                 if (storedScores !== null) {
