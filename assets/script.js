@@ -2,7 +2,7 @@
 var start = document.getElementById("start-quiz");
 var timerEl = document.getElementById("timer");
 var quizEl = document.getElementById("quiz-content");
-var scorePage = document.querySelector("#highscore-header");
+var scorePage = document.getElementById("score-list");
 
 // Questions and answers in object form
 var myQuestions = [
@@ -175,9 +175,10 @@ function quiz() {
             quizEl.appendChild(scoreInput);
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
-            // The following function renders scores in a highscore list as <li> elements
+            // The following function renders scores in a highscore list as <p> elements
             function renderScores() {
-                // Render a new li for each new score
+                scorePage.innerHTML = "";
+                // Render a new p for each new score
                 for (var i = 0; i < scores.length; i++) {
                     var quizScore = scores[i];
                     var li = document.createElement("li");
@@ -204,6 +205,7 @@ function quiz() {
                     return;
                 }
                 scores.push(highScore);
+                document.querySelector("#score-input").value = "";
                 // Store the scores and render them to highscore page
                 storeScores();
                 renderScores();
@@ -243,6 +245,7 @@ function quiz() {
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
             function renderScores() {
+                scorePage.innerHTML = "";
                 for (var i = 0; i < scores.length; i++) {
                     var quizScore = scores[i];
                     var li = document.createElement("li");
@@ -267,6 +270,7 @@ function quiz() {
                     return;
                 }
                 scores.push(highScore);
+                document.querySelector("#score-input").value = "";
                 storeScores();
                 renderScores();
             });
@@ -305,6 +309,7 @@ function quiz() {
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
             function renderScores() {
+                scorePage.innerHTML = "";
                 for (var i = 0; i < scores.length; i++) {
                     var quizScore = scores[i];
                     var li = document.createElement("li");
@@ -329,6 +334,7 @@ function quiz() {
                     return;
                 }
                 scores.push(highScore);
+                document.querySelector("#score-input").value = "";
                 storeScores();
                 renderScores();
             });
@@ -367,6 +373,7 @@ function quiz() {
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
             function renderScores() {
+                scorePage.innerHTML = "";
                 for (var i = 0; i < scores.length; i++) {
                     var quizScore = scores[i];
                     var li = document.createElement("li");
@@ -391,6 +398,7 @@ function quiz() {
                     return;
                 }
                 scores.push(highScore);
+                document.querySelector("#score-input").value = "";
                 storeScores();
                 renderScores();
             });
