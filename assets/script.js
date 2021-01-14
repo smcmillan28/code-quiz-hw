@@ -2,25 +2,26 @@
 var start = document.getElementById("start-quiz");
 var timerEl = document.getElementById("timer");
 var quizEl = document.getElementById("quiz-content");
+var scorePage = document.querySelector("#highscore-header");
 
 // Questions and answers in object form
 var myQuestions = [
     {
-        question: "Arrays in Javascript can be used to store _____.", 
+        question: "Arrays in Javascript can be used to store _____.",
         answers: {
-            a: "numbers and strings", 
-            b: "other arrays", 
-            c: "booleans", 
+            a: "numbers and strings",
+            b: "other arrays",
+            c: "booleans",
             d: "all of the above"
         },
         correctAns: "all of the above"
     },
     {
-        question: "Commonly used data types DO NOT include _____.", 
+        question: "Commonly used data types DO NOT include _____.",
         answers: {
-            a: "strings", 
-            b: "booleans", 
-            c: "alerts", 
+            a: "strings",
+            b: "booleans",
+            c: "alerts",
             d: "numbers"
         },
         correctAns: "alerts"
@@ -50,12 +51,15 @@ var myQuestions = [
         answers: {
             a: "JavaScript",
             b: "the terminal/bash",
-            c: "console log", 
+            c: "console log",
             d: "for loops"
         },
         correctAns: "console log"
     }
 ];
+
+// Writing variable to store scores and render to highscore page
+var scores = [];
 
 // Quiz function
 function quiz() {
@@ -80,7 +84,7 @@ function quiz() {
             restart.textContent = "Restart Quiz";
             quizEl.appendChild(restart);
         }
-    }, 1000); 
+    }, 1000);
 
     // Creating portion of function that will write quiz to DOM
     quizEl.textContent = "";
@@ -93,16 +97,16 @@ function quiz() {
     // Creating buttons to hold potential answers
     var option1 = document.createElement("button");
     option1.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
-    quizEl.appendChild(option1);  
+    quizEl.appendChild(option1);
     var option2 = document.createElement("button");
     option2.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
-    quizEl.appendChild(option2);  
+    quizEl.appendChild(option2);
     var option3 = document.createElement("button");
     option3.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
-    quizEl.appendChild(option3);  
+    quizEl.appendChild(option3);
     var option4 = document.createElement("button");
     option4.setAttribute("style", "width: 60%; height: 40px; font-size: 20px; margin: 10px;");
-    quizEl.appendChild(option4);  
+    quizEl.appendChild(option4);
 
     // Creating retry button for quiz once complete
     var retry = document.createElement("button");
@@ -120,12 +124,6 @@ function quiz() {
     scoreInput.setAttribute("id", "score-input");
     scoreInput.setAttribute("style", "width: 100%; margin-bottom: 20px; margin-top: 40px;");
 
-    scoreSubmit.addEventListener("click", function(e) {
-        e.preventDefault();
-        var highScore = document.querySelector("#score-input").value;
-        localStorage.setItem("score", highScore);
-    });
-
     // Setting variable for question iterations
     var i = 0
 
@@ -133,7 +131,7 @@ function quiz() {
     var numRight = 0
 
     // Write questions and answers to the page
-    quizQuestion.textContent = myQuestions[i].question; 
+    quizQuestion.textContent = myQuestions[i].question;
     option1.textContent = myQuestions[i].answers.a;
     option2.textContent = myQuestions[i].answers.b;
     option3.textContent = myQuestions[i].answers.c;
@@ -141,7 +139,7 @@ function quiz() {
     console.log(myQuestions[i].correctAns);
 
     // Click events for each option that will progress through the quiz
-    option1.addEventListener("click", function() {
+    option1.addEventListener("click", function () {
 
         // Setting variable and conditional to tell if click value is correct answer
         var userPick = myQuestions[i].answers.a.valueOf();
@@ -151,14 +149,14 @@ function quiz() {
         if (userPick !== myQuestions[i].correctAns) {
             timeLeft -= 5;
 
-        // Adding 1 to numRight if they answer correctly
+            // Adding 1 to numRight if they answer correctly
         } else {
             numRight++;
             console.log(numRight);
         }
         i++;
         if (i < 5) {
-            quizQuestion.textContent = myQuestions[i].question; 
+            quizQuestion.textContent = myQuestions[i].question;
             option1.textContent = myQuestions[i].answers.a;
             option2.textContent = myQuestions[i].answers.b;
             option3.textContent = myQuestions[i].answers.c;
@@ -166,7 +164,7 @@ function quiz() {
             console.log(myQuestions[i].correctAns);
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
-            var userScore = Math.ceil(timeLeft * (numRight/5));
+            var userScore = Math.ceil(timeLeft * (numRight / 5));
             quizEl.textContent = "You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
@@ -177,10 +175,44 @@ function quiz() {
             quizEl.appendChild(scoreInput);
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
+            // The following function renders scores in a highscore list as <li> elements
+            function renderScores() {
+                // Render a new li for each new score
+                for (var i = 0; i < scores.length; i++) {
+                    var quizScore = scores[i];
+                    var li = document.createElement("li");
+                    li.textContent = quizScore;
+                    scorePage.appendChild(li);
+                }
+            }
+            function init() {
+                var storedScores = JSON.parse(localStorage.getItem("scores"));
+                if (storedScores !== null) {
+                    scores = storedScores;
+                }
+                renderScores();
+            }
+            function storeScores() {
+                // Stringify and store scores in localStorage in form of array under var scores
+                localStorage.setItem("scores", JSON.stringify(scores));
+            }
+            scoreSubmit.addEventListener("click", function (e) {
+                e.preventDefault();
+                var highScore = document.querySelector("#score-input").value.trim();
+                // Return from function early if submitted score is empty
+                if (highScore === "") {
+                    return;
+                }
+                scores.push(highScore);
+                // Store the scores and render them to highscore page
+                storeScores();
+                renderScores();
+            });
+            init();
         }
     });
 
-    option2.addEventListener("click", function() {
+    option2.addEventListener("click", function () {
         var userPick = myQuestions[i].answers.b.valueOf();
         console.log(userPick);
         if (userPick !== myQuestions[i].correctAns) {
@@ -191,7 +223,7 @@ function quiz() {
         }
         i++;
         if (i < 5) {
-            quizQuestion.textContent = myQuestions[i].question; 
+            quizQuestion.textContent = myQuestions[i].question;
             option1.textContent = myQuestions[i].answers.a;
             option2.textContent = myQuestions[i].answers.b;
             option3.textContent = myQuestions[i].answers.c;
@@ -199,7 +231,7 @@ function quiz() {
             console.log(myQuestions[i].correctAns);
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
-            var userScore = Math.ceil(timeLeft * (numRight/5));
+            var userScore = Math.ceil(timeLeft * (numRight / 5));
             quizEl.textContent = "You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
@@ -210,10 +242,39 @@ function quiz() {
             quizEl.appendChild(scoreInput);
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
-        }    
+            function renderScores() {
+                for (var i = 0; i < scores.length; i++) {
+                    var quizScore = scores[i];
+                    var li = document.createElement("li");
+                    li.textContent = quizScore;
+                    scorePage.appendChild(li);
+                }
+            }
+            function init() {
+                var storedScores = JSON.parse(localStorage.getItem("scores"));
+                if (storedScores !== null) {
+                    scores = storedScores;
+                }
+                renderScores();
+            }
+            function storeScores() {
+                localStorage.setItem("scores", JSON.stringify(scores));
+            }
+            scoreSubmit.addEventListener("click", function (e) {
+                e.preventDefault();
+                var highScore = document.querySelector("#score-input").value.trim();
+                if (highScore === "") {
+                    return;
+                }
+                scores.push(highScore);
+                storeScores();
+                renderScores();
+            });
+            init();
+        }
     });
 
-    option3.addEventListener("click", function() {
+    option3.addEventListener("click", function () {
         var userPick = myQuestions[i].answers.c.valueOf();
         console.log(userPick);
         if (userPick !== myQuestions[i].correctAns) {
@@ -224,7 +285,7 @@ function quiz() {
         }
         i++;
         if (i < 5) {
-            quizQuestion.textContent = myQuestions[i].question; 
+            quizQuestion.textContent = myQuestions[i].question;
             option1.textContent = myQuestions[i].answers.a;
             option2.textContent = myQuestions[i].answers.b;
             option3.textContent = myQuestions[i].answers.c;
@@ -232,7 +293,7 @@ function quiz() {
             console.log(myQuestions[i].correctAns);
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
-            var userScore = Math.ceil(timeLeft * (numRight/5));
+            var userScore = Math.ceil(timeLeft * (numRight / 5));
             quizEl.textContent = "You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
@@ -243,10 +304,39 @@ function quiz() {
             quizEl.appendChild(scoreInput);
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
+            function renderScores() {
+                for (var i = 0; i < scores.length; i++) {
+                    var quizScore = scores[i];
+                    var li = document.createElement("li");
+                    li.textContent = quizScore;
+                    scorePage.appendChild(li);
+                }
+            }
+            function init() {
+                var storedScores = JSON.parse(localStorage.getItem("scores"));
+                if (storedScores !== null) {
+                    scores = storedScores;
+                }
+                renderScores();
+            }
+            function storeScores() {
+                localStorage.setItem("scores", JSON.stringify(scores));
+            }
+            scoreSubmit.addEventListener("click", function (e) {
+                e.preventDefault();
+                var highScore = document.querySelector("#score-input").value.trim();
+                if (highScore === "") {
+                    return;
+                }
+                scores.push(highScore);
+                storeScores();
+                renderScores();
+            });
+            init();
         }
     });
 
-    option4.addEventListener("click", function() {
+    option4.addEventListener("click", function () {
         var userPick = myQuestions[i].answers.d.valueOf();
         console.log(userPick);
         if (userPick !== myQuestions[i].correctAns) {
@@ -257,7 +347,7 @@ function quiz() {
         }
         i++;
         if (i < 5) {
-            quizQuestion.textContent = myQuestions[i].question; 
+            quizQuestion.textContent = myQuestions[i].question;
             option1.textContent = myQuestions[i].answers.a;
             option2.textContent = myQuestions[i].answers.b;
             option3.textContent = myQuestions[i].answers.c;
@@ -265,7 +355,7 @@ function quiz() {
             console.log(myQuestions[i].correctAns);
         } else {
             quizEl.setAttribute("style", "font-size: 20px; text-align: center; margin-top: 50px;");
-            var userScore = Math.ceil(timeLeft * (numRight/5));
+            var userScore = Math.ceil(timeLeft * (numRight / 5));
             quizEl.textContent = "You answered " + numRight + " questions correctly. Your score is " + userScore + ".";
             var scoreIns = document.createElement("p");
             quizEl.appendChild(scoreIns);
@@ -276,6 +366,35 @@ function quiz() {
             quizEl.appendChild(scoreInput);
             quizEl.appendChild(scoreSubmit);
             quizEl.appendChild(retry);
+            function renderScores() {
+                for (var i = 0; i < scores.length; i++) {
+                    var quizScore = scores[i];
+                    var li = document.createElement("li");
+                    li.textContent = quizScore;
+                    scorePage.appendChild(li);
+                }
+            }
+            function init() {
+                var storedScores = JSON.parse(localStorage.getItem("scores"));
+                if (storedScores !== null) {
+                    scores = storedScores;
+                }
+                renderScores();
+            }
+            function storeScores() {
+                localStorage.setItem("scores", JSON.stringify(scores));
+            }
+            scoreSubmit.addEventListener("click", function (e) {
+                e.preventDefault();
+                var highScore = document.querySelector("#score-input").value.trim();
+                if (highScore === "") {
+                    return;
+                }
+                scores.push(highScore);
+                storeScores();
+                renderScores();
+            });
+            init();
         }
     });
 }
