@@ -53,4 +53,5 @@ As expected, this was the most challenging project to date.  Having to start fro
 - Writing/Calling Functions from Scratch
 - DOM Manipulation Using Event Handlers (primarily used "click")
 - Local Storage functionality (storing and rendering items from local storage)
+
 I look forward to the next challenge!
