@@ -26,7 +26,7 @@ The scoring is two-fold:
 - Time
 - Correct Answers
 
-As mentioned above, there is a 60-second timer running while the quiz is in process.  At the same time, the application will be keeping count of the number of questions you answer correctly.  Your final score is a combination of both factors calculated as sucH:
+As mentioned above, there is a 60-second timer running while the quiz is in process.  At the same time, the application will be keeping count of the number of questions you answer correctly.  Your final score is a combination of both factors calculated as such:
 
 - **(Time Remaining) * (Correct Answers/Total Number of Questions)**
 
