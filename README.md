@@ -4,7 +4,7 @@ This quiz will assess your basic JavaScript skills.
 
 Want to test your knowledge more than once?  No worries.  You can take the quiz and store your scores as many times as you would like.  
 
-Please read the below for all pertinent information regarding this application.
+Please read the below for all pertinent information regarding this application, or go directly to the quiz [here](https://smcmillan28.github.io/code-quiz-hw/) to test your knowledge!
 
 ## Table of Contents
 
